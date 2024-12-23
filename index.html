@@ -1,91 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Video Ad Integration</title>
-    <script src="https://imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
-    <style>
-      #video-container {
-        position: relative;
-        width: 640px;
-        height: 360px;
-        background-color: black;
-      }
-      video {
-        width: 100%;
-        height: 100%;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="video-container">
-      <video id="content-video" controls></video>
-      <div id="ad-container"></div>
-    </div>
+<html>
+<head>
+  <title>VAST Video Player Example</title>
+  <script src="https://cdn.example.com/vast-video-player.js"></script>
+</head>
+<body>
+  <div id="video-player"></div>
 
-    <script>
-      // Your VAST tag URL
-      const adTagUrl =
-        "https://pubads.g.doubleclick.net/gampad/ads?iu=/22894150773/AdUnit-Test4-Video-WithoutCompanion&description_url=[placeholder]&tfcd=0&npa=0&ad_type=audio_video&sz=1x1%7C400x300%7C640x480&gdfp_req=1&unviewed_position_start=1&output=vast&env=vp&impl=s&correlator=";
+  <script>
+    // Replace 'YOUR_VAST_TAG_URL' with the actual URL of your VAST tag
+    const vastUrl = 'https://pubads.g.doubleclick.net/gampad/live/ads?iu=/22894150773/AdUnit-Test4-Video-WithoutCompanion&description_url=https%3A%2F%2Fadityasabnis.github.io%2Fget-talking%2F&tfcd=0&npa=0&ad_type=audio_video&sz=1x1%7C400x300%7C640x480&gdfp_req=1&unviewed_position_start=1&output=vast&env=vp&impl=s&correlator=';
 
-      const videoContainer = document.getElementById("video-container");
-      const contentVideo = document.getElementById("content-video");
-      const adContainer = document.getElementById("ad-container");
+    // Initialize the vast video player
+    const player = new VastVideoPlayer({
+      container: document.getElementById('video-player'),
+      url: vastUrl,
+    });
 
-      // Initialize the IMA SDK
-      const adDisplayContainer = new google.ima.AdDisplayContainer(adContainer, contentVideo);
-      const adsLoader = new google.ima.AdsLoader(adDisplayContainer);
-
-      let initialized = false;
-
-      // Initialize on user interaction
-      videoContainer.addEventListener("click", () => {
-        if (!initialized) {
-          adDisplayContainer.initialize();
-          initialized = true;
-        }
-
-        const adsRequest = new google.ima.AdsRequest();
-        adsRequest.adTagUrl = adTagUrl;
-
-        adsLoader.requestAds(adsRequest);
-
-        // Handle ads manager loading
-        adsLoader.addEventListener(
-          google.ima.AdsManagerLoadedEvent.Type.ADS_MANAGER_LOADED,
-          (adsManagerLoadedEvent) => {
-            const adsManager = adsManagerLoadedEvent.getAdsManager(contentVideo);
-
-            adsManager.init(640, 360, google.ima.ViewMode.NORMAL);
-            adsManager.start();
-
-            // Resume content playback after ads complete
-            adsManager.addEventListener(
-              google.ima.AdEvent.Type.ALL_ADS_COMPLETED,
-              () => {
-                contentVideo.controls = true;
-              }
-            );
-
-            // Handle resuming content
-            adsManager.addEventListener(
-              google.ima.AdEvent.Type.CONTENT_RESUME_REQUESTED,
-              () => {
-                contentVideo.controls = true;
-              }
-            );
-
-            // Handle skipping ads
-            adsManager.addEventListener(
-              google.ima.AdEvent.Type.SKIPPED,
-              () => {
-                contentVideo.controls = true;
-              }
-            );
-          }
-        );
-      });
-    </script>
-  </body>
+    // Play the ad
+    player.play();
+  </script>
+</body>
 </html>

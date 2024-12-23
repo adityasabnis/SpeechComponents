@@ -26,7 +26,7 @@
 
   <script>
     // Define the VAST ad URL
-    const adTagUrl = "https://pubads.g.doubleclick.net/gampad/live/ads?iu=/22894150773/AdUnit-Test2-Video-WithCompanionSizes&description_url=http%3A%2F%2Fwww.adslot.com&tfcd=0&npa=0&ad_type=audio_video&sz=400x300%7C640x480&ciu_szs=120x60%2C88x31%2C768x1024%2C1024x768%2C1x1%2C234x60%2C970x90%2C6x1%2Cfluid%2C980x120%2C200x200%2C970x250%2C300x100%2C4x1%2C120x20&gdfp_req=1&unviewed_position_start=1&output=vast&env=vp&impl=s&correlator=";
+    const adTagUrl = "[https://pubads.g.doubleclick.net/gampad/live/ads?iu=/22894150773/AdUnit-Test2-Video-WithCompanionSizes&description_url=http%3A%2F%2Fwww.adslot.com&tfcd=0&npa=0&ad_type=audio_video&sz=400x300%7C640x480&ciu_szs=120x60%2C88x31%2C768x1024%2C1024x768%2C1x1%2C234x60%2C970x90%2C6x1%2Cfluid%2C980x120%2C200x200%2C970x250%2C300x100%2C4x1%2C120x20&gdfp_req=1&unviewed_position_start=1&output=vast&env=vp&impl=s&correlator=](https://pubads.g.doubleclick.net/gampad/ads?iu=/22894150773/AdUnit-Test4-Video-WithoutCompanion&description_url=https%3A%2F%2Fadityasabnis.github.io%2Fget-talking%2F&tfcd=0&npa=0&ad_type=audio_video&sz=1x1%7C400x300%7C640x480&gdfp_req=1&unviewed_position_start=1&output=vast&env=vp&impl=s&correlator=)";
 
     const videoContainer = document.getElementById('video-container');
     const contentVideo = document.getElementById('content-video');
